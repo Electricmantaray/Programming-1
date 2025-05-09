@@ -1,4 +1,22 @@
+/*************************************************************************
+
+ File: CabinetGame.java
+
+ Author: Hayden Jones
+
+ Date started: 04/05/2025
+
+ Description:
+ ---
+
+ History: 04/05/2025 v 1.00
+
+ *************************************************************************/
 package arcade;
 
-public class CabinetGame {
+//Imports
+import arcade.GameType;
+import exceptions.InvalidGameIdException;
+
+public class CabinetGame extends ArcadeGame {
 }
