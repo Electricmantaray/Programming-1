@@ -14,5 +14,28 @@
  *************************************************************************/
 package arcade;
 
+import customer.Customer;
+
+import java.util.List;
+
 public class Arcade {
+
+    // Member Variables
+    private String name;
+    private int revenue;
+    private List<ArcadeGame> games;
+    private List<Customer> customers;
+
+
+
+
+
+    @Override
+    public String toString() {
+        return "";
+    }
+
+    // Unit tests
+    public static void main(String[] args) {
+    }
 }

@@ -19,4 +19,36 @@ import arcade.GameType;
 import exceptions.InvalidGameIdException;
 
 public class CabinetGame extends ArcadeGame {
+
+    // Member Variables
+    private boolean hasRewardPayout;
+
+    // Constructor
+    public CabinetGame(String id, String name, int price, boolean hasRewardPayout){
+        super(id, name, price);
+        // Validate first letter C
+    }
+
+    // get price
+    @Override
+    public int calculatePrice(boolean peak) {
+        if (peak){
+            return 100;
+        }
+        else {
+            if (hasRewardPayout) {
+                return 20;
+            }
+            return 50;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "";
+    }
+
+    // Unit tests
+    public static void main(String[] args) {
+    }
 }
