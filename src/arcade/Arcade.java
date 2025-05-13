@@ -35,7 +35,7 @@ public class Arcade {
         return "";
     }
 
-    // Unit tests
+    // Test harness
     public static void main(String[] args) {
     }
 }

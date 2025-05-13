@@ -26,7 +26,7 @@ public class VirtualRealityGame extends ActiveGame{
 
     // Constructor
     public VirtualRealityGame(String id, String name, int price, int minAge, EquipmentType equipment){
-        super(/*blah blah blah*/);
+        super(id, name, price, minAge);
         // Validate first letter AV
     }
 
@@ -54,7 +54,7 @@ public class VirtualRealityGame extends ActiveGame{
         return "";
     }
 
-    // Unit tests
+    // Test harness
     public static void main(String[] args) {
     }
 }
