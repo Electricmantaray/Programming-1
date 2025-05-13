@@ -15,46 +15,103 @@
 package arcade;
 
 //Imports
-import arcade.GameType;
-import arcade.EquipmentType;
 import exceptions.InvalidGameIdException;
 
 public class VirtualRealityGame extends ActiveGame{
 
-    // Method Variables
-    private EquipmentType equipment;
+    // Method Variables //
+    private final EquipmentType equipmentType;
 
-    // Constructor
-    public VirtualRealityGame(String id, String name, int price, int minAge, EquipmentType equipment){
+    // Constructor //
+    public VirtualRealityGame(String id, String name, int price, int minAge, EquipmentType equipmentType) throws InvalidGameIdException{
         super(id, name, price, minAge);
-        // Validate first letter AV
+        validateId(id);
+        this.equipmentType = equipmentType;
     }
 
-    // get price
+    // Functions //
+
+    // Validates id with new condition of
+    // Start with 'AV'
+    @Override
+    protected void validateId(String id) throws InvalidGameIdException {
+        super.validateId(id);
+        // New condition
+        if(!id.startsWith("AV")) {
+            throw new InvalidGameIdException("Invalid game ID: \nMust be 10 alphanumeric characters. \nVirtualReality must start with 'AV'.");
+        }
+    }
+
+    // Get price, changes depending on peak and equipment
     @Override
     public int calculatePrice(boolean peak) {
+        int price = getPrice();
         if (peak){
-            return 100;
+            return price;
         }
         else {
-            return switch (equipment) {
-                case HEADSET_ONLY -> 90;
-                case HEADSET_AND_CONTROLLERS -> 95;
-                case FULL_BODY_TRACKING -> 100;
+            return switch (equipmentType) {
+                case HEADSET_ONLY -> (int) (Math.floor(price * 0.9));
+                case HEADSET_AND_CONTROLLERS -> (int) (Math.floor(price * 0.95));
+                case FULL_BODY_TRACKING -> price;
             };
         }
     }
 
 
+    // Accessors //
+    public EquipmentType getEquipmentType(){
+        return equipmentType;
+    }
 
-
-
+    // Overrides the toString method
+    // Providing a formatted VirtualRealityGame representation
     @Override
     public String toString() {
-        return "";
+        return "\nVirtual Reality Game: " +
+                super.toString() +
+                ", Equipment = "
+                + equipmentType;
     }
 
     // Test harness
     public static void main(String[] args) {
+        System.out.println("\nVirtualRealityGame Tests:");
+
+        // Normal test - expected format
+        try {
+            VirtualRealityGame t1 = new VirtualRealityGame("AV87654321", "Test virtual reality game 1", 465, 17, EquipmentType.HEADSET_ONLY);
+            System.out.println("Test 1 passed: " + t1);
+        } catch (InvalidGameIdException e) {
+            System.err.println("Test 1 failed: " + e.getMessage());
+        }
+
+        // Invalid ID (Doesn't start with a 'A')
+        try {
+            VirtualRealityGame t2 = new VirtualRealityGame("A123456789", "Test virtual reality game 2", 875, 8, EquipmentType.HEADSET_ONLY);
+            System.out.println("Test 2 passed : " + t2);
+        } catch (InvalidGameIdException e) {
+            System.err.println("Test 2 failed: " + e.getMessage());
+        }
+
+        // Peak price
+        // Expected outcome: 232
+        try {
+            VirtualRealityGame t3 = new VirtualRealityGame("AVVVVVVVVV", "Test virtual reality game 3", 232, 21, EquipmentType.FULL_BODY_TRACKING);
+            int updatedPrice = t3.calculatePrice(true);
+            System.out.println("Test 3 passed: " + t3 + ", updated price = " + updatedPrice);
+        } catch (InvalidGameIdException e) {
+            System.err.println("Test 3 failed: " + e.getMessage());
+        }
+
+        // Off-peak price
+        // Expected outcome: 106
+        try {
+            VirtualRealityGame t4 = new VirtualRealityGame("AV23123123", "Test virtual reality game 4", 112, 70, EquipmentType.HEADSET_AND_CONTROLLERS);
+            int updatedPrice = t4.calculatePrice(false);
+            System.out.println("Test 4 passed: " + t4 + ", updated price = " + updatedPrice);
+        } catch (InvalidGameIdException e) {
+            System.err.println("Test 4 failed: " + e.getMessage());
+        }
     }
 }

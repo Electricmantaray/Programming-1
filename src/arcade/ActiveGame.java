@@ -22,6 +22,7 @@ package arcade;
 import exceptions.InvalidGameIdException;
 
 
+
 public class ActiveGame extends ArcadeGame {
 
     // Member Variables //
@@ -74,7 +75,7 @@ public class ActiveGame extends ArcadeGame {
                 + minAge;
     }
 
-    // Test harness
+    // Test harness //
     public static void main(String[] args) {
         System.out.println("\nActiveGame Tests:");
 

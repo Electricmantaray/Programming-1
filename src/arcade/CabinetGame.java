@@ -80,7 +80,7 @@ public class CabinetGame extends ArcadeGame {
 
     }
 
-    // Test harness
+    // Test harness //
     public static void main(String[] args) {
         System.out.println("\nCabinetGame Tests:");
 
