@@ -25,6 +25,8 @@ public class CabinetGame extends ArcadeGame {
     // Member Variables //
     // Storing boolean if the game gives a reward
     private final boolean hasRewardPayout;
+    // ID start of string condition
+    private static final String idStringCondition = "C";
 
     // Constructor //
     public CabinetGame(String id, String name, int price, boolean hasRewardPayout) throws InvalidGameIdException{
@@ -41,8 +43,9 @@ public class CabinetGame extends ArcadeGame {
     protected void validateId(String id) throws InvalidGameIdException {
         super.validateId(id);
         // New condition
-        if(!id.startsWith("C")) {
-            throw new InvalidGameIdException("Invalid game ID: \nMust be 10 alphanumeric characters. \nCabinetGame must start with 'C'.");
+        // exception message changes to specify id issue
+        if(!id.startsWith(idStringCondition)) {
+            throw new InvalidGameIdException("Invalid game ID: \nCabinetGame must start with: " + idStringCondition);
         }
     }
 

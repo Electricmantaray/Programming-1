@@ -7,7 +7,8 @@
  Date started: 04/05/2025
 
  Description:
- ENUM -
+ ENUM - enumerates through the vr equipment, used
+ on VirtualRealityGame
 
  History: 04/05/2025 v 1.00
 

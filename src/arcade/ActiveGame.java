@@ -28,6 +28,8 @@ public class ActiveGame extends ArcadeGame {
     // Member Variables //
     // Storing integer for the minimum age in years
     private final int minAge;
+    // ID start of string condition
+    private static final String idStringCondition = "A";
 
     // Constructor //
     public ActiveGame(String id, String name, int price, int minAge) throws InvalidGameIdException{
@@ -44,8 +46,9 @@ public class ActiveGame extends ArcadeGame {
     protected void validateId(String id) throws InvalidGameIdException {
         super.validateId(id);
         // New condition
-        if(!id.startsWith("A")) {
-            throw new InvalidGameIdException("Invalid game ID: \nMust be 10 alphanumeric characters. \nActiveGame must start with 'A'.");
+        // exception message changes to specify id issue
+        if(!id.startsWith(idStringCondition)) {
+            throw new InvalidGameIdException("Invalid game ID: \nActiveGame must start with: " + idStringCondition);
         }
     }
 
@@ -89,7 +92,7 @@ public class ActiveGame extends ArcadeGame {
 
         // Invalid ID (Doesn't start with a 'A')
         try {
-            ActiveGame t2 = new ActiveGame("111111111", "Test active game 2", 270, 16);
+            ActiveGame t2 = new ActiveGame("1111111111", "Test active game 2", 270, 16);
             System.out.println("Test 2 passed : " + t2);
         } catch (InvalidGameIdException e) {
             System.err.println("Test 2 failed: " + e.getMessage());

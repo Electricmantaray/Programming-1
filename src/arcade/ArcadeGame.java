@@ -32,16 +32,18 @@ public abstract class ArcadeGame {
 
     // Constructor //
     public ArcadeGame(String id, String name, int price) {
+        validateId(id);
         this.id = id;
         this.name = name;
         this.price = price;
-        validateId(id);
     }
 
     // Functions //
     // Protected method for validating game id
     protected void validateId(String id) throws InvalidGameIdException{
-        if (id == null || id.length() != 10 || !id.matches("[a-zA-Z0-9]{10}$")){
+        if (id == null || id.length() != 10 || !id.matches("[a-zA-Z0-9]{10}")){
+            // Default Exception message for string:
+            // Alphanumeric 10 characters
             throw new InvalidGameIdException("Invalid game ID: \nMust be 10 alphanumeric characters.");
         }
     }

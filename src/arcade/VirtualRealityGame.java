@@ -21,6 +21,8 @@ public class VirtualRealityGame extends ActiveGame{
 
     // Method Variables //
     private final EquipmentType equipmentType;
+    // ID start of string condition
+    private static final String idStringCondition = "AV";
 
     // Constructor //
     public VirtualRealityGame(String id, String name, int price, int minAge, EquipmentType equipmentType) throws InvalidGameIdException{
@@ -37,8 +39,9 @@ public class VirtualRealityGame extends ActiveGame{
     protected void validateId(String id) throws InvalidGameIdException {
         super.validateId(id);
         // New condition
-        if(!id.startsWith("AV")) {
-            throw new InvalidGameIdException("Invalid game ID: \nMust be 10 alphanumeric characters. \nVirtualReality must start with 'AV'.");
+        // exception message changes to specify id issue
+        if(!id.startsWith(idStringCondition)) {
+            throw new InvalidGameIdException("Invalid game ID: \nVirtualReality must start with: " + idStringCondition);
         }
     }
 
@@ -86,7 +89,7 @@ public class VirtualRealityGame extends ActiveGame{
             System.err.println("Test 1 failed: " + e.getMessage());
         }
 
-        // Invalid ID (Doesn't start with a 'A')
+        // Invalid ID (Doesn't start with a 'AV')
         try {
             VirtualRealityGame t2 = new VirtualRealityGame("A123456789", "Test virtual reality game 2", 875, 8, EquipmentType.HEADSET_ONLY);
             System.out.println("Test 2 passed : " + t2);
