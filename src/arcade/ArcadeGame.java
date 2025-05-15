@@ -69,7 +69,7 @@ public abstract class ArcadeGame {
     public String toString() {
         return String.format(
                 "ID = %s, Name = %s, Price = %d",
-                id, name, price
+                id, name, price/100.00
         );
     }
 }

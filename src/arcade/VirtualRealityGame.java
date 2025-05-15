@@ -74,7 +74,7 @@ public class VirtualRealityGame extends ActiveGame{
         return "\nVirtual Reality Game: " +
                 super.toString() +
                 ", Equipment = "
-                + equipmentType;
+                + equipmentType.name();
     }
 
     // Test harness

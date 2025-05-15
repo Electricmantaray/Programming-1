@@ -64,7 +64,7 @@ public class ActiveGame extends ArcadeGame {
     }
 
     // Accessors //
-    public int minAge(){
+    public int getMinAge(){
         return minAge;
     }
 

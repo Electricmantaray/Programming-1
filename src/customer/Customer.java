@@ -14,6 +14,7 @@
  *************************************************************************/
 package customer;
 
+import arcade.ActiveGame;
 import arcade.ArcadeGame;
 
 import customer.DiscountType;
@@ -73,21 +74,66 @@ public class Customer {
     }
 
     // Charges funds per game play in pence
-    public void chargeAccount(ArcadeGame arcadeGame, boolean peak) throws InsufficientBalanceException, AgeLimitException{
+    public int chargeAccount(ArcadeGame arcadeGame, boolean peak) throws InsufficientBalanceException, AgeLimitException{
+        // Checks if activeGame or a subclass
+        if (arcadeGame instanceof ActiveGame activeGame) {
+            // Age check
+            if (this.age < activeGame.getMinAge()) {
+                throw new AgeLimitException("Customer is not old enough to play game.");
+            }
+        }
 
+        // Price has local discounts depending on if peak or not
+        int price = arcadeGame.calculatePrice(peak);
+        // initialise overdraft
+        int overdraft = 0;
+
+        // Additional discount
+        // only if off-peak
+        if (!peak){
+            // Replaces price with discounted
+            switch(discountType) {
+                // 10% discount
+                case STAFF -> price = (int) Math.floor(price * 0.9);
+                // 5% discount
+                case STUDENT -> {
+                    price = (int) Math.floor(price * 0.95);
+                    overdraft = -500;
+                }
+                // 0% discount
+                case NONE -> {
+                    break;
+                }
+            }
+        // Adds overdraft regardless of if peak
+        } else {
+            if (discountType == DiscountType.STUDENT){
+                overdraft = -500;
+            }
+        }
+
+        // Checking balance
+        // If balance after game less than 0/-500
+        if ((balance - price) < overdraft){
+            throw new InsufficientBalanceException("Insufficient funds to play game.");
+        }
+
+        // Deducts cost of game from balance
+        balance -= price;
+        return price;
     }
-
-
-
-    // Accessors //
-
 
     @Override
     public String toString() {
-        return "";
+        return String.format(
+                "CustomerID = %s, Name = %s, Age = %d, Discount Type = %s Balance = £%.2f",
+                id, name, age, discountType.name(), balance/100.00
+        );
     }
 
     // Test harness
     public static void main(String[] args) {
+        System.out.println("\nCustomer Tests:");
+
     }
 }
