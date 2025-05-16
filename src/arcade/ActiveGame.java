@@ -93,9 +93,9 @@ public class ActiveGame extends ArcadeGame {
         // Invalid ID (Doesn't start with a 'A')
         try {
             ActiveGame t2 = new ActiveGame("1111111111", "Test active game 2", 270, 16);
-            System.out.println("Test 2 passed : " + t2);
+            System.err.println("Test 2 passed : " + t2);
         } catch (InvalidGameIdException e) {
-            System.err.println("Test 2 failed: " + e.getMessage());
+            System.out.println("Test 2 failed: " + e.getMessage());
         }
 
         // Peak price

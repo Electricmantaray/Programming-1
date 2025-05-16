@@ -17,6 +17,6 @@ package arcade;
 
 public enum EquipmentType {
     HEADSET_ONLY,
-    HEADSET_AND_CONTROLLERS,
+    HEADSET_AND_CONTROLLER,
     FULL_BODY_TRACKING;
 }

@@ -7,6 +7,9 @@
  Date started: 04/05/2025
 
  Description:
+ specialised subclass of ActiveGame, represents
+ virtual reality games, including a field that
+ specifies the vr equipment.
 
 
  History: 04/05/2025 v 1.00
@@ -25,7 +28,8 @@ public class VirtualRealityGame extends ActiveGame{
     private static final String idStringCondition = "AV";
 
     // Constructor //
-    public VirtualRealityGame(String id, String name, int price, int minAge, EquipmentType equipmentType) throws InvalidGameIdException{
+    public VirtualRealityGame(String id, String name, int price, int minAge, EquipmentType equipmentType)
+            throws InvalidGameIdException{
         super(id, name, price, minAge);
         validateId(id);
         this.equipmentType = equipmentType;
@@ -55,7 +59,7 @@ public class VirtualRealityGame extends ActiveGame{
         else {
             return switch (equipmentType) {
                 case HEADSET_ONLY -> (int) (Math.floor(price * 0.9));
-                case HEADSET_AND_CONTROLLERS -> (int) (Math.floor(price * 0.95));
+                case HEADSET_AND_CONTROLLER -> (int) (Math.floor(price * 0.95));
                 case FULL_BODY_TRACKING -> price;
             };
         }
@@ -92,9 +96,9 @@ public class VirtualRealityGame extends ActiveGame{
         // Invalid ID (Doesn't start with a 'AV')
         try {
             VirtualRealityGame t2 = new VirtualRealityGame("A123456789", "Test virtual reality game 2", 875, 8, EquipmentType.HEADSET_ONLY);
-            System.out.println("Test 2 passed : " + t2);
+            System.err.println("Test 2 passed : " + t2);
         } catch (InvalidGameIdException e) {
-            System.err.println("Test 2 failed: " + e.getMessage());
+            System.out.println("Test 2 failed: " + e.getMessage());
         }
 
         // Peak price
@@ -110,7 +114,7 @@ public class VirtualRealityGame extends ActiveGame{
         // Off-peak price
         // Expected outcome: 106
         try {
-            VirtualRealityGame t4 = new VirtualRealityGame("AV23123123", "Test virtual reality game 4", 112, 70, EquipmentType.HEADSET_AND_CONTROLLERS);
+            VirtualRealityGame t4 = new VirtualRealityGame("AV23123123", "Test virtual reality game 4", 112, 70, EquipmentType.HEADSET_AND_CONTROLLER);
             int updatedPrice = t4.calculatePrice(false);
             System.out.println("Test 4 passed: " + t4 + ", updated price = " + penceToPound(updatedPrice));
         } catch (InvalidGameIdException e) {
