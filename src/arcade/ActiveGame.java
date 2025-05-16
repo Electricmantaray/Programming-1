@@ -103,7 +103,7 @@ public class ActiveGame extends ArcadeGame {
         try {
             ActiveGame t3 = new ActiveGame("AAAAAAAAAA", "Test active game 3", 777, 21);
             int updatedPrice = t3.calculatePrice(true);
-            System.out.println("Test 3 passed: " + t3 + ", updated price = " + updatedPrice);
+            System.out.println("Test 3 passed: " + t3 + ", updated price = " + penceToPound(updatedPrice));
         } catch (InvalidGameIdException e) {
             System.err.println("Test 3 failed: " + e.getMessage());
         }
@@ -113,7 +113,7 @@ public class ActiveGame extends ArcadeGame {
         try {
             ActiveGame t4 = new ActiveGame("AHHHHHHHHH", "Test active game 4", 444, 13);
             int updatedPrice = t4.calculatePrice(false);
-            System.out.println("Test 4 passed: " + t4 + ", updated price = " + updatedPrice);
+            System.out.println("Test 4 passed: " + t4 + ", updated price = " + penceToPound(updatedPrice));
         } catch (InvalidGameIdException e) {
             System.err.println("Test 4 failed: " + e.getMessage());
         }

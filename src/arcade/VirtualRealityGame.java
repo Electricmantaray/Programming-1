@@ -102,7 +102,7 @@ public class VirtualRealityGame extends ActiveGame{
         try {
             VirtualRealityGame t3 = new VirtualRealityGame("AVVVVVVVVV", "Test virtual reality game 3", 232, 21, EquipmentType.FULL_BODY_TRACKING);
             int updatedPrice = t3.calculatePrice(true);
-            System.out.println("Test 3 passed: " + t3 + ", updated price = " + updatedPrice);
+            System.out.println("Test 3 passed: " + t3 + ", updated price = " + penceToPound(updatedPrice));
         } catch (InvalidGameIdException e) {
             System.err.println("Test 3 failed: " + e.getMessage());
         }
@@ -112,7 +112,7 @@ public class VirtualRealityGame extends ActiveGame{
         try {
             VirtualRealityGame t4 = new VirtualRealityGame("AV23123123", "Test virtual reality game 4", 112, 70, EquipmentType.HEADSET_AND_CONTROLLERS);
             int updatedPrice = t4.calculatePrice(false);
-            System.out.println("Test 4 passed: " + t4 + ", updated price = " + updatedPrice);
+            System.out.println("Test 4 passed: " + t4 + ", updated price = " + penceToPound(updatedPrice));
         } catch (InvalidGameIdException e) {
             System.err.println("Test 4 failed: " + e.getMessage());
         }

@@ -14,16 +14,39 @@
  *************************************************************************/
 package simulation;
 
+import arcade.*;
+
+import customer.Customer;
+
+import exceptions.AgeLimitException;
+import exceptions.InsufficientBalanceException;
+import exceptions.InvalidCustomerException;
+import exceptions.InvalidGameIdException;
+
+import java.io.*;
+import java.util.*;
+
+import java.io.File;
+
 public class Simulation {
+
+    // File reading and simulation
     public static void main(String[] args) {
+        File customers = new File("customers.txt");
+        File games = new File("games.txt");
+        File transactions = new File("transactions.txt");
 
+        Arcade arcade = initialiseArcade("GameCo Arcade", games, customers);
+        simulateFun(arcade, transactions);
     }
 
-    public void initialiseArcade(){
+    public static Arcade initialiseArcade(String arcadeName, File gamesFile, File customerFile){
+        Arcade arcade = new Arcade(arcadeName);
 
+        
     }
 
-    public void simulateFun(){
+    public static void simulateFun(Arcade arcade, File transactionFile){
 
     }
 

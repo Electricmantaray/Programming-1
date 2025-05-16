@@ -14,8 +14,7 @@
  *************************************************************************/
 package customer;
 
-import arcade.ActiveGame;
-import arcade.ArcadeGame;
+import arcade.*;
 
 import customer.DiscountType;
 
@@ -123,10 +122,23 @@ public class Customer {
         return price;
     }
 
+    // Accessors //
+
+    public String getId() {return id;}
+
+    public String getName() {return name;}
+
+    public int getAge() {return age;}
+
+    public DiscountType getDiscountType() {return discountType;}
+
+    public int getBalance() {return balance;}
+
+
     @Override
     public String toString() {
         return String.format(
-                "CustomerID = %s, Name = %s, Age = %d, Discount Type = %s Balance = £%.2f",
+                "CustomerID = %s, Name = %s, Age = %d, Discount Type = %s Balance = %.2f",
                 id, name, age, discountType.name(), balance/100.00
         );
     }
@@ -134,6 +146,59 @@ public class Customer {
     // Test harness
     public static void main(String[] args) {
         System.out.println("\nCustomer Tests:");
+
+
+        // Normal test - expected format
+
+        try{
+            Customer c1 = new Customer("A00001", "Customer 1", 27, DiscountType.STAFF);
+            Customer c2 = new Customer("A00002", "Customer 2", 22, DiscountType.STUDENT, 2245);
+            System.out.println("Test 1 passed: " + c1 + "\n" + c2);
+        } catch (Exception e) {
+            System.err.println("Test 1 failed: " + e.getMessage());
+        }
+
+        // Invalid Customer ID
+
+        try {
+            Customer c3 = new Customer("321", "Customer 3", 99, DiscountType.NONE);
+            System.out.println("Test 2 passed : " + c3);
+        } catch (InvalidCustomerException e) {
+            System.err.println("Test 2 failed: " + e.getMessage());
+        }
+
+
+
+
+
+
+
+
+
+
+        // Initial customers and example classes
+
+        Customer STAFF = new Customer("Test01", "Customer 1", 25, DiscountType.STAFF, 1000);
+        Customer STUDENT = new Customer("Test02", "Customer 2", 27, DiscountType.STUDENT, 800);
+        Customer NONE = new Customer("Test03", "Customer 3", 31, DiscountType.NONE, 400);
+
+        // Games for testing
+        ActiveGame activeGame = new ActiveGame("A123456789", "Test active game 1", 400, 18);
+        CabinetGame cabinetGame = new CabinetGame("CBAcba1234", "Test cabinet game 1", 100, true);
+        VirtualRealityGame virtualRealityGame = new VirtualRealityGame("AV87654321", "Test virtual reality game 1", 465, 17, EquipmentType.HEADSET_ONLY);
+
+
+        // Off-peak price
+        try {
+
+
+
+
+
+            System.out.println("Test  passed: ");
+        } catch (InvalidGameIdException e) {
+            System.err.println("Test 4 failed: " + e.getMessage());
+        }
 
     }
 }

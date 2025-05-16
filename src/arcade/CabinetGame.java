@@ -108,7 +108,7 @@ public class CabinetGame extends ArcadeGame {
         try {
             CabinetGame t3 = new CabinetGame("CCCCCCCCCC", "Test cabinet game 3", 213, true);
             int updatedPrice = t3.calculatePrice(true);
-            System.out.println("Test 3 passed: " + t3 + ", updated price = " + updatedPrice);
+            System.out.println("Test 3 passed: " + t3 + ", updated price = " + penceToPound(updatedPrice));
         } catch (InvalidGameIdException e) {
             System.err.println("Test 3 failed: " + e.getMessage());
         }
@@ -118,7 +118,7 @@ public class CabinetGame extends ArcadeGame {
         try {
             CabinetGame t4 = new CabinetGame("C234567890", "Test cabinet game 4", 321, true);
             int updatedPrice = t4.calculatePrice(false);
-            System.out.println("Test 4 passed: " + t4 + ", updated price = " + updatedPrice);
+            System.out.println("Test 4 passed: " + t4 + ", updated price = " + penceToPound(updatedPrice));
         } catch (InvalidGameIdException e) {
             System.err.println("Test 4 failed: " + e.getMessage());
         }
@@ -128,7 +128,7 @@ public class CabinetGame extends ArcadeGame {
         try {
             CabinetGame t5 = new CabinetGame("C987654321", "Test cabinet game 5", 123, false);
             int updatedPrice = t5.calculatePrice(false);
-            System.out.println("Test 5 passed: " + t5 + ", updated price = " + updatedPrice);
+            System.out.println("Test 5 passed: " + t5 + ", updated price = " + penceToPound(updatedPrice));
         } catch (InvalidGameIdException e) {
             System.err.println("Test 5 failed: " + e.getMessage());
         }

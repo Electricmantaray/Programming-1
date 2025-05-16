@@ -63,13 +63,19 @@ public abstract class ArcadeGame {
         return price;
     }
 
+
+    // Reformat price for output
+    public static String penceToPound(int pence){
+        return String.format("£%.2f", pence/100.00);
+    }
+
     // Overrides the toString method
     // Providing a formatted ArcadeGame representation
     @Override
     public String toString() {
         return String.format(
-                "ID = %s, Name = %s, Price = %d",
-                id, name, price/100.00
+                "ID = %s, Name = %s, Price = %s",
+                id, name, penceToPound(price)
         );
     }
 }
